@@ -1,2 +1,2 @@
-# GPS Tracker Server in Go
+# Go GPS Tracker Server
 

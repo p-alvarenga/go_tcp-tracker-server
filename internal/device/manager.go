@@ -1,19 +1,23 @@
 package device
 
-import "sync"
+import (
+	"sync"
+
+	"github.com/p-alvarenga/go_tcp-tracker-server/internal/domain/types"
+)
 
 type DeviceManager struct {
 	mu      sync.RWMutex
-	devices map[Imei]*Device
+	devices map[types.IMEI]*Device
 }
 
 func NewDeviceManager() *DeviceManager {
 	return &DeviceManager{
-		devices: make(map[Imei]*Device),
+		devices: make(map[types.IMEI]*Device),
 	}
 }
 
-func (dm *DeviceManager) GetOrCreate(imei Imei) *Device {
+func (dm *DeviceManager) GetOrCreate(imei types.IMEI) *Device {
 	dm.mu.RLock()
 	d, ok := dm.devices[imei]
 	dm.mu.RUnlock()

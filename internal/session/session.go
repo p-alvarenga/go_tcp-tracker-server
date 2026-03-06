@@ -6,11 +6,12 @@ import (
 	"net"
 
 	"github.com/p-alvarenga/go_tcp-tracker-server/internal/device"
+	"github.com/p-alvarenga/go_tcp-tracker-server/internal/domain/types"
 )
 
 type Session struct {
 	conn     net.Conn
-	deviceId device.Imei
+	deviceId types.IMEI
 
 	devicesManager *device.DeviceManager
 

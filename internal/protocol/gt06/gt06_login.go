@@ -3,12 +3,12 @@ package gt06
 import (
 	"fmt"
 
-	"github.com/p-alvarenga/go_tcp-tracker-server/internal/device"
+	"github.com/p-alvarenga/go_tcp-tracker-server/internal/domain/types"
 )
 
 type LoginPacket struct {
-	Imei   device.Imei
-	Serial uint
+	IMEI   types.IMEI
+	Serial int
 }
 
 func (l *LoginPacket) Type() PacketType {
@@ -21,6 +21,6 @@ func decodeLogin(payload []byte) (*LoginPacket, error) {
 	}
 
 	return &LoginPacket{
-		Imei: device.Imei(bcdToASCII(payload)),
+		IMEI: types.IMEI(bcdToASCII(payload)),
 	}, nil
 }

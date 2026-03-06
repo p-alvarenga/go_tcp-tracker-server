@@ -9,6 +9,7 @@ import (
 
 	"github.com/p-alvarenga/go_tcp-tracker-server/internal/config"
 	"github.com/p-alvarenga/go_tcp-tracker-server/internal/device"
+	"github.com/p-alvarenga/go_tcp-tracker-server/internal/domain/types"
 	"github.com/p-alvarenga/go_tcp-tracker-server/internal/session"
 )
 
@@ -17,7 +18,7 @@ type Server struct {
 
 	listener net.Listener
 
-	sessions map[device.Imei]*session.Session
+	sessions map[types.IMEI]*session.Session
 	devices  *device.DeviceManager
 
 	ctx    context.Context
@@ -36,7 +37,7 @@ func NewServer(cfg *config.ServerConfig, rootLogger *slog.Logger) *Server {
 	return &Server{
 		cfg: cfg,
 
-		sessions: make(map[device.Imei]*session.Session),
+		sessions: make(map[types.IMEI]*session.Session),
 		devices:  device.NewDeviceManager(),
 
 		ctx:    ctx,

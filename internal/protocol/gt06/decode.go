@@ -43,7 +43,7 @@ func validateFrame(raw []byte) error {
 	}
 
 	if !bytes.HasSuffix(raw, stopBytes) {
-		return fmt.Errorf("gt06: invalid stop")
+		return fmt.Errorf("gt06: invalid stop pkt=%s", fmt.Sprintf(" %X", raw))
 	}
 
 	return nil

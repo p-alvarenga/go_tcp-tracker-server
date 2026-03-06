@@ -19,7 +19,7 @@ func (t PacketType) isValid() bool {
 
 var (
 	startBytes = []byte{0x78, 0x78}
-	stopBytes  = []byte{0x0A, 0x0D}
+	stopBytes  = []byte{0x0D, 0x0A}
 )
 
 type Packet interface {

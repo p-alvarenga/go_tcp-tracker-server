@@ -2,17 +2,17 @@ package device
 
 import (
 	"time"
+
+	"github.com/p-alvarenga/go_tcp-tracker-server/internal/domain/types"
 )
 
-type Imei string
-
 type Device struct {
-	Imei     Imei
+	IMEI     types.IMEI
 	LastSeen time.Time
 }
 
-func newDevice(imei Imei) *Device {
+func newDevice(imei types.IMEI) *Device {
 	return &Device{
-		Imei: imei,
+		IMEI: imei,
 	}
 }

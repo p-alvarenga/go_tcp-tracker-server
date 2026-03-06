@@ -6,16 +6,18 @@ import (
 	"net"
 
 	"github.com/p-alvarenga/go_tcp-tracker-server/internal/device"
+	"github.com/p-alvarenga/go_tcp-tracker-server/internal/domain/types"
 )
 
 type Session struct {
 	conn     net.Conn
-	deviceId device.Imei
+	deviceId types.IMEI
 
 	devicesManager *device.DeviceManager
 
-	writeCh chan []byte
-	readCh  chan []byte
+	WriteChan chan []byte
+	ReadChan  chan []byte
+	buffer    []byte
 
 	ctx    context.Context
 	cancel context.CancelFunc
@@ -32,8 +34,8 @@ func New(conn net.Conn, devManager *device.DeviceManager, parentCtx context.Cont
 
 		devicesManager: devManager,
 
-		writeCh: make(chan []byte), // buffered?
-		readCh:  make(chan []byte), // buffered?
+		WriteChan: make(chan []byte), // buffered?
+		ReadChan:  make(chan []byte), // buffered?
 
 		ctx:    ctx,
 		cancel: cancel,

@@ -1,6 +1,6 @@
-package gt06
+package protocol
 
-func bcdToASCII(bcd []byte) string {
+func BCDToASCII(bcd []byte) string {
 	var imei []byte
 
 	for _, b := range bcd {

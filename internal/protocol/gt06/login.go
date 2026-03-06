@@ -4,15 +4,12 @@ import (
 	"fmt"
 
 	"github.com/p-alvarenga/go_tcp-tracker-server/internal/domain/types"
+	"github.com/p-alvarenga/go_tcp-tracker-server/internal/protocol"
 )
 
 type LoginPacket struct {
 	IMEI   types.IMEI
 	Serial int
-}
-
-func (l *LoginPacket) Type() PacketType {
-	return LoginType
 }
 
 func decodeLogin(payload []byte) (*LoginPacket, error) {
@@ -21,6 +18,14 @@ func decodeLogin(payload []byte) (*LoginPacket, error) {
 	}
 
 	return &LoginPacket{
-		IMEI: types.IMEI(bcdToASCII(payload)),
+		IMEI: types.IMEI(protocol.BCDToASCII(payload)),
 	}, nil
+}
+
+func (l *LoginPacket) Type() PacketType {
+	return LoginType
+}
+
+func (l *LoginPacket) ToACKPacket() {
+
 }

@@ -24,12 +24,13 @@ func Decode(raw []byte) (Packet, error) {
 			return nil, err
 		}
 
-		pkt.Serial = int(serial)
+		pkt.Serial = int(serial) // validation
 
 		return pkt, nil
-	}
 
-	return nil, nil
+	default: // same as IsValid()
+		return nil, fmt.Errorf("packet type invalid or not supported yet (%X)", raw[3])
+	}
 }
 
 func validateFrame(raw []byte) error {
